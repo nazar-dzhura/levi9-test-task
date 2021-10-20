@@ -3,11 +3,11 @@
 :root {
   --main-bg: #ffffff;
   --second-bg: #fafafb;
-  --txt-color: #455560;
+  --txt-color: #333333;
   --txt-white: #fff;
   --main-color: #6f00ff;
   --second-color: #9400d3;
-  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
   --border-radius: 15px;
   --topnav-height: 110px;
   --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
