@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.15.8",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@material-ui/lab": "^4.0.0-alpha.60",
