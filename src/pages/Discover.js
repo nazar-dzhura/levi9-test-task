@@ -17,10 +17,11 @@ const Discover = () => {
 
     let discoverUrl = 'https://api.themoviedb.org/3/discover/movie' +
         '?api_key=' + API_KEY +
-        '&page=' + page +
+        '&page=' + Math.ceil(page/2) +
         '&sort_by=release_date.' + releaseDateSortValue +
         '&with_genres=' + genreUrlSlice
     ;
+    console.log(discoverUrl)
     let genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
 
     let films = useAxiosGet(discoverUrl)
@@ -51,7 +52,13 @@ const Discover = () => {
 
     if(films.data) {
         if(genres.data) {
-            content = films.data.results.map((film, id) =>
+            const splitArray  =
+                page % 2 !== 0
+                ? 
+                films.data.results.slice(0, Math.round(films.data.results.length/2)) 
+                :
+                films.data.results.slice(Math.round(films.data.results.length/2), films.data.results.length)
+            content = splitArray.map((film, id) =>
                 <FilmCard key={id} film={film} genres={genres.data.genres}/>
             )
         }
@@ -77,7 +84,7 @@ const Discover = () => {
                         options={genres.data ? genres.data.genres.map(item => item.name) : []}
                         values={genres.data ? genres.data.genres.map(item => item.name) : []}/>
                     { content }
-                    <PaginationRounded setPage={setPage} countOfPages={films.data ? films.data.total_pages : 1}/>
+                    <PaginationRounded setPage={setPage} countOfPages={films.data ? films.data.total_pages * 2 : 1}/>
                 </Container>
             </Container>
         </div>
