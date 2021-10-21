@@ -1,0 +1,15 @@
+.header {
+    padding: 20px 40px;
+    background-image: linear-gradient(
+            to top right,
+            var(--main-color),
+            var(--second-color)
+    );
+    box-shadow: var(--box-shadow);
+}
+
+.header__title {
+    font-size: 2rem;
+    color: var(--txt-white);
+    font-weight: bold;
+}
