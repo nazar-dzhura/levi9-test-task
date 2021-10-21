@@ -4,6 +4,8 @@ import './assets/css/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+document.title = 'Movie Search'
+
 ReactDOM.render(
     <App />,
   document.getElementById('root')
