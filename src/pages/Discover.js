@@ -12,16 +12,17 @@ const Discover = () => {
     const [page, setPage] = useState(1)
     const [releaseDateSortValue, setReleaseDateSortValue] = useState('asc');
     const [genreSelectorValues, setGenreSelectorValues] = useState([])
-    const [genreUrlSlice, setGenreUrlSlice] = useState('')
+    const [wantedGenresIdsUrlSlice, setWantedGenresIdsUrlSlice] = useState('')
     let content = null
 
     let discoverUrl = 'https://api.themoviedb.org/3/discover/movie' +
         '?api_key=' + API_KEY +
         '&page=' + Math.ceil(page/2) +
         '&sort_by=release_date.' + releaseDateSortValue +
-        '&with_genres=' + genreUrlSlice
+        '&with_genres=' + wantedGenresIdsUrlSlice
     ;
-    console.log(discoverUrl)
+
+    //film object contains array of genres ids, but if we need their names - they should be reached separately
     let genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
 
     let films = useAxiosGet(discoverUrl)
@@ -36,7 +37,7 @@ const Discover = () => {
                 }
             }
         }
-        setGenreUrlSlice(wantedGenresIds)
+        setWantedGenresIdsUrlSlice(wantedGenresIds)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [genreSelectorValues]);
 
@@ -52,7 +53,7 @@ const Discover = () => {
 
     if(films.data) {
         if(genres.data) {
-            const splitArray  =
+            const splitArray  =  //needed to split limit items per page
                 page % 2 !== 0
                 ? 
                 films.data.results.slice(0, Math.round(films.data.results.length/2)) 
@@ -66,8 +67,7 @@ const Discover = () => {
 
     return (
         <div>
-            <Container sx={{paddingTop: '50px'}} maxWidth="lg">
-                {/*<Header />*/}
+            <Container maxWidth="lg">
                 <Container sx={{paddingBottom: '50px'}} maxWidth="lg">
                     <DropSelector
                         select={releaseDateSortValue}

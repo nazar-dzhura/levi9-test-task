@@ -10,7 +10,7 @@ import './film-card.css'
 
 const FilmCard = ({film, genres}) => {
     const genresNames = []
-    for (const genreId of film.genre_ids) {
+    for (const genreId of film.genre_ids) {  //getting genre names by comparing with ids
         for (const genre of genres) {
             if (genre.id === genreId) {genresNames.push(genre.name)}
         }
