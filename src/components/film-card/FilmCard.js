@@ -15,6 +15,7 @@ const FilmCard = ({film, genres}) => {
             if (genre.id === genreId) {genresNames.push(genre.name)}
         }
     }
+
     return (
         <Card className="film-card">
             <CardMedia
@@ -29,7 +30,7 @@ const FilmCard = ({film, genres}) => {
                         {film.original_title}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div" sx={{my: 2}}>
-                        {film.release_date.substring(0,4)}
+                        {film.release_date.match(/\d{4}/)}
                     </Typography>
                     <Typography className="film-card__additional" component="div">
                         {genresNames.length === 0 ? 'Genres for this film was not specified' : genresNames.map((name) =>
